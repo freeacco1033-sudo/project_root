@@ -1,0 +1,38 @@
+# .github/workflows/build.yml
+name: Build Zygisk Module
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake build-essential
+
+    - name: Create Build Directory
+      run: mkdir -p build
+
+    - name: Run CMake
+      run: cd build && cmake ..
+
+    - name: Build Project
+      run: cd build && make
+
+    - name: List Output Files
+      run: ls -la build/
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: zygisk-module
+        path: build/libzygisk.so
