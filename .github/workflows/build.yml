@@ -44,7 +44,7 @@ jobs:
     - name: Prepare Module Package
       run: |
         mkdir -p module_package/zygisk
-        cp build/libzygisk.so module_package/zygisk/zygisk.so
+        cp build/libzygisk.so module_package/zygisk/armeabi-v7a.so
         cp module.prop module_package/
         cp customize.sh module_package/
         chmod +x module_package/customize.sh
