@@ -1,0 +1,9 @@
+# module.prop
+id=gamemod_zygisk_injector
+name=Game Mod Injector Zygisk
+version=1.0
+versionCode=1
+author=YourName
+description=Zygisk module to inject library into game process with detailed logging
+minMagisk=20400
+minZygisk=24300
