@@ -1,3 +1,4 @@
+# CMakeLists.txt
 cmake_minimum_required(VERSION 3.10)
 project(zygisk_module CXX)
 
@@ -8,10 +9,10 @@ add_library(zygisk SHARED zygisk.cpp)
 
 set_target_properties(zygisk PROPERTIES PREFIX "lib")
 
-# بدون البحث عن JNI
 target_include_directories(zygisk PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}
     /usr/include
+    /usr/include/jni
 )
 
 target_link_libraries(zygisk log dl)
