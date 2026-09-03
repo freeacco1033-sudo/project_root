@@ -17,7 +17,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake build-essential
+        sudo apt-get install -y cmake build-essential openjdk-17-jdk-headless
 
     - name: Create Build Directory
       run: mkdir -p build
