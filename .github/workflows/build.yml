@@ -39,11 +39,23 @@ jobs:
     - name: Build Project
       run: cd build && make
 
-    - name: List Output Files
-      run: ls -la build/
+    - name: Prepare Module Package
+      run: |
+        mkdir -p module_package/libs/arm64-v8a
+        cp build/libzygisk.so module_package/libs/arm64-v8a/
+        cp module.prop module_package/
+        cp customize.sh module_package/
+        chmod +x module_package/customize.sh
+
+    - name: Create Module ZIP
+      run: |
+        cd module_package
+        zip -r ../zygisk_module.zip .
+        cd ..
+        ls -lah zygisk_module.zip
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: zygisk-module
-        path: build/libzygisk.so
+        path: zygisk_module.zip
